@@ -1,6 +1,9 @@
 # Attic-Redux
 Attic...Again! Attic is a client side encrpyted file storage and sharing application, similar to dropbox, google drive, and the such.
 
+## Technologies
+* Base libraries implemented in rust.
+
 ## LibAttic
 LibAttic provides mid level abstraction to the business logic behind attic. This can probably be broken down into several sub libraries that provide os level functionality and abstraction, and access to a given tent server. Libattic is responsible for:
 * Tent service access

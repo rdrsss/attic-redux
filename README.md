@@ -26,3 +26,15 @@ LibAttic provides mid level abstraction to the business logic behind attic. This
       * Rolling hashes
       * Metadata aggregation
       
+## Attic Apps
+This section describes functionality surrounding various apps utilizing lib attic.
+
+* Windows
+* Linux
+* OsX
+* Web
+
+
+
+
+      

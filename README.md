@@ -32,7 +32,7 @@ LibAttic provides mid level abstraction to the business logic behind attic. This
 ## Attic File Sentinel     
 The file sentinel is attic's gateway to the underlying file system and file manipulation functions and pipelines.
 
-There will have to be quite a bit of interaction with the OS api, will need to look into best practices for interacting with the WinApi (or any other api's) directly from rust. The goal being to keep it mostly rusty.
+**Note*** There will have to be quite a bit of interaction with the OS api, will need to look into best practices for interacting with the WinApi (or any other api's) directly from rust. The goal being to keep it mostly rusty.
 
 ### Links
 * https://github.com/DaGenix/rust-crypto

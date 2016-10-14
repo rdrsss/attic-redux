@@ -6,7 +6,6 @@ mod tests {
 }
 
 mod file_sentinel {
-    mod file {
-    }
+    mod file {}
 }
 

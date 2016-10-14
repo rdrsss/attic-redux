@@ -1,0 +1,5 @@
+# Rust files
+*.lock
+
+# Rust directories
+target

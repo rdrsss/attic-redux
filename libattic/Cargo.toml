@@ -1,0 +1,6 @@
+[package]
+name = "libattic"
+version = "0.1.0"
+authors = ["Manuel A. Rodriguez <manuel.rdrs@gmail.com>"]
+
+[dependencies]

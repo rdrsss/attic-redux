@@ -1,11 +1,9 @@
+
 #[cfg(test)]
 mod tests {
     #[test]
     fn it_works() {
+        println!("Libattic hello!");
     }
-}
 
-pub mod file_sentinel {
-    pub mod file {}
 }
-

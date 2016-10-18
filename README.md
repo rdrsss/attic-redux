@@ -36,7 +36,11 @@ The file sentinel is attic's gateway to the underlying file system and file mani
 **Note*** There will have to be quite a bit of interaction with the OS api, will need to look into best practices for interacting with the WinApi (or any other api's) directly from rust. The goal being to keep it mostly rusty.
 
 ### Links
+#### Crypto
 * https://github.com/DaGenix/rust-crypto
+* https://github.com/dnaq/sodiumoxide
+
+#### File System
 * https://doc.rust-lang.org/std/fs/
 * http://gekkio.fi/blog/2014-10-08-calling-win32-api-with-rust-ffi.html
 

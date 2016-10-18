@@ -1,8 +1,7 @@
 extern crate libattic;
 
 use std::io::Write;
-
-use libattic::file_sentinel::file;
+use libattic::file;
 
 
 static TEST_FILENAME : &'static str = "test_file";
@@ -38,7 +37,7 @@ fn file_sentinel_rolling_hash() {
     // Create a test file
     create_test_file();
     // Read it in and setp meta data
-    let mut local_file = libattic::file_sentinel::file::File {Path:"path"};
+    let mut local_file = libattic::file::File::new(TEST_FILENAME.to_string()); // {path:"path".to_string()};
     // Delete test file
     delete_test_file();
 }

@@ -5,7 +5,5 @@ mod tests {
     }
 }
 
-pub mod file_sentinel {
-    pub mod file {}
-}
 
+pub mod file;

@@ -7,6 +7,8 @@ pub struct File {
 
 impl File {
     pub fn new(path: String) -> File {
+        // Check if file is valid.
+        // Gather metadata about file. 
         File {
             path: path,
         }

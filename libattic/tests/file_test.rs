@@ -3,7 +3,6 @@ extern crate libattic;
 use std::io::Write;
 //use libattic::file;
 
-
 static TEST_FILENAME : &'static str = "test_file";
 
 #[cfg(test)]

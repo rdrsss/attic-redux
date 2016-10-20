@@ -1,3 +1,5 @@
+extern crate crypto;
+
 #[cfg(test)]
 mod tests {
     #[test]

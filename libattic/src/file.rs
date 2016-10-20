@@ -29,5 +29,11 @@ impl File {
         let metadata = result.unwrap();
         return metadata.len();
     }
+
+
+    pub fn generate_hash(&mut self, path: String) {
+        // TODO :: this
+
+    }
 }
 

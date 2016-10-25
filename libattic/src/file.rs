@@ -33,7 +33,9 @@ impl File {
 
     pub fn generate_hash(&mut self, path: String) {
         // TODO :: this
-
+        //
+        // - Open file
+        // -- 
     }
 }
 

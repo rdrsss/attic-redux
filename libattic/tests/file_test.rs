@@ -1,4 +1,8 @@
 extern crate libattic;
+extern crate crypto;
+
+use crypto::digest::Digest;
+use crypto::sha2::Sha256;
 
 use std::io::Write;
 
@@ -43,4 +47,20 @@ fn file_sentinel_rolling_hash() {
     println!("File size: {}",local_file.get_filesize());
     // Delete test file
     delete_test_file();
+}
+
+
+#[test]
+fn sha_256_hash_test() {
+    // Create Sha256 Object
+    let mut hasher = Sha256::new();
+    // Write input message
+    // A stream can be input like this in real time 
+    hasher.input_str("test test test");
+    hasher.input_str("1234");
+    hasher.input_str("asdkghjaskdjhgkashdgkjhaskgh");
+    // Read hash digest
+    let hex = hasher.result_str();
+
+    println!("Test hash : {}", hex)
 }

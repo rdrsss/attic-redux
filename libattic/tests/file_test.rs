@@ -47,7 +47,7 @@ fn file_sentinel_rolling_hash() {
     create_test_file("sentinel_test".to_string(), 1);
     // Read it in and setp meta data
     let mut local_file = libattic::file::File::new(); // {path:"path".to_string()};
-    local_file.initialize("sentinel_test".to_string());
+    local_file.sync("sentinel_test".to_string());
     //assert!(local_file.get_filesize());
     println!("File size: {}",local_file.get_filesize());
     // Delete test file
@@ -74,6 +74,7 @@ fn sha_256_hash_test() {
 fn generate_file_hash() {
     // Create a test file
     create_test_file("hash_file_test".to_string(), 100);
+
 
     // Delete test file
     delete_test_file("hash_file_test".to_string());

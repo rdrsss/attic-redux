@@ -21,9 +21,10 @@ impl File {
     ///     * Checks if file is valid.
     ///     * Runs rolling hash (sha256)
     ///     * Can be run at any time to any path to update file object.
-    pub fn sync(&mut self, path: String) {
+    pub fn sync(&mut self, path: String) { // Look into Result type error handling Result<(), Err>
         self.path = path;
         // Check if file is valid.
+        
         // Gather metadata about file. 
         // Generate hash.
     }

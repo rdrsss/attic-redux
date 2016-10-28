@@ -72,10 +72,10 @@ fn sha_256_hash_test() {
 
 #[test]
 fn generate_file_hash() {
-    // Create a test file
+    // Create a largish test file
     create_test_file("hash_file_test".to_string(), 100);
-
-
+    // Create a lib attic file object
+    // Generate hash and metadata about given file.
     // Delete test file
     delete_test_file("hash_file_test".to_string());
 }

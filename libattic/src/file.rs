@@ -1,5 +1,6 @@
 
 use std;
+use std::result;
 
 /// The File struct maps a libattic file to a file within the file system.
 ///     * Keeps track of file metadata
@@ -10,10 +11,17 @@ pub struct File {
 }
 
 impl File {
-    pub fn new() -> File {
-        File {
+    /// Builds a new File struct or returns an error string.
+    pub fn new(path: String) -> Result<File, &'static str> {
+        // Build empty file
+        let mut f = File {
             path : "".to_string(),
             hash : "".to_string(),
+        };
+        // Sync libattiac file to local file and return.
+        match f.sync(path) {
+            Ok(()) => Ok(f),
+            Err(e) => Err(e),
         }
     }
 
@@ -21,12 +29,13 @@ impl File {
     ///     * Checks if file is valid.
     ///     * Runs rolling hash (sha256)
     ///     * Can be run at any time to any path to update file object.
-    pub fn sync(&mut self, path: String) { // Look into Result type error handling Result<(), Err>
+    pub fn sync(&mut self, path: String) -> Result<(), &'static str> { 
         self.path = path;
         // Check if file is valid.
         
         // Gather metadata about file. 
         // Generate hash.
+        Ok(())
     }
 
     pub fn get_path(&self) -> &String {

@@ -43,15 +43,23 @@ fn delete_test_file(filepath: String) {
 
 #[test]
 fn file_sentinel_rolling_hash() {
+    let filepath = "sentinel_test";
     // Create a test file
-    create_test_file("sentinel_test".to_string(), 1);
-    // Read it in and setp meta data
-    let mut local_file = libattic::file::File::new(); // {path:"path".to_string()};
-    local_file.sync("sentinel_test".to_string());
+    create_test_file(filepath.to_string(), 1);
+    // Read it in and setup meta data
+    let local_file;
+    match libattic::file::File::new(filepath.to_string()) {
+        Ok(f) => local_file = f,
+        Err(e) => {
+            println!(" Failed to create file {}", e.to_string());
+            assert!(false);
+            return;
+        }
+    }
     //assert!(local_file.get_filesize());
-    println!("File size: {}",local_file.get_filesize());
+    println!("File size: {}", local_file.get_filesize());
     // Delete test file
-    delete_test_file("sentinel_test".to_string());
+    delete_test_file(filepath.to_string());
 }
 
 

@@ -1,6 +1,11 @@
 
 use std;
 
+pub enum AtticFileError {
+    Metadata,
+    PathExists
+}
+
 /// The File struct maps a libattic file to a file within the file system.
 ///     * Keeps track of file metadata
 ///     * File hash
@@ -11,7 +16,7 @@ pub struct File {
 
 impl File {
     /// Builds a new File struct or returns an error string.
-    pub fn new(path: String) -> Result<File, &'static str> {
+    pub fn new(path: String) -> Result<File, AtticFileError> {
         // Build empty file
         let mut f = File {
             path : path,
@@ -28,26 +33,27 @@ impl File {
     ///     * Checks if file is valid.
     ///     * Runs rolling hash (sha256)
     ///     * Can be run at any time to any path to update file object.
-    pub fn sync(&mut self) -> Result<(), &'static str> { 
+    pub fn sync(&mut self) -> Result<(), AtticFileError> { 
         // Get metadata
-        if !(std::path::Path::new(&self.path).exists()) {
-            Err("Path does not exist")
+        if !std::path::Path::new(&self.path).exists() {
+            return Err(AtticFileError::PathExists);
         }
 
         let metadata;
         match std::fs::metadata(&self.path) {
             Ok(v) => metadata = v,
-            Err(e) => Err("meta data error"),
+            Err(e) => return Err(AtticFileError::Metadata),
         }
         // Check if file is valid.
 
         // Gather metadata about file. 
         // Generate hash.
+        //
         Ok(())
     }
 
     /// Updates the filepath and re-syncs the File.
-    pub fn update_path(&mut self, path: String) -> Result<(), &'static str> {
+    pub fn update_path(&mut self, path: String) -> Result<(), AtticFileError> {
         self.path = path;
         match self.sync() {
             Ok(()) => Ok(()),

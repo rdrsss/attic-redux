@@ -1,9 +1,16 @@
 
+extern crate crypto;
+
+use crypto::digest::Digest;
+use crypto::sha2::Sha256;
+
 use std;
 
 pub enum AtticFileError {
     Metadata,
-    PathExists
+    PathExists,
+    IsDirectory,
+    FileOpen
 }
 
 /// Implement this trait to be able to println! error enum
@@ -46,17 +53,45 @@ impl File {
             return Err(AtticFileError::PathExists);
         }
 
+        // Check if file is valid.
+        // Gather metadata about file. 
         let metadata;
         match std::fs::metadata(&self.path) {
             Ok(v) => metadata = v,
             Err(e) => return Err(AtticFileError::Metadata),
         }
-        // Check if file is valid.
 
-        // Gather metadata about file. 
-        // Generate hash.
-        //
-        Ok(())
+        // Make sure we aren't working with a directory
+        if !metadata.is_dir() {
+            // Generate hash
+            let res = self.generate_hash(&self.path);
+            return Ok(());
+        }
+        return Err(AtticFileError::IsDirectory);
+    }
+
+    /// Generate sha256 rolling hash for file.
+    fn generate_hash(&self, path :&String) -> Result<String, AtticFileError> {
+        // Open file
+        match std::fs::File::open(path) {
+            Ok(file) => {
+                // Create buffered reader around file.
+                let mut reader = std::io::BufReader::new(file);
+                // Create Sha256 Object
+                let mut hasher = crypto::sha2::Sha256::new();
+                // TODO :: This now
+                // Read in chunks until done.
+                // Input to Hasher
+                // Generate result
+            },
+            Err(e) => {
+                // TODO :: Log error
+                println!("File err : {}", e);
+                return Err(AtticFileError::FileOpen);
+            },
+        }
+        // - Run rolling hash (sha256)
+        return Ok("".to_string());
     }
 
     /// Updates the filepath and re-syncs the File.
@@ -81,13 +116,6 @@ impl File {
         assert!(result.is_ok());
         let metadata = result.unwrap();
         return metadata.len();
-    }
-
-    fn generate_hash(&mut self, path: String) {
-        // TODO :: this
-        //
-        // - Open file
-        // - Run rolling hash (sha256)
     }
 }
 

@@ -6,6 +6,13 @@ pub enum AtticFileError {
     PathExists
 }
 
+/// Implement this trait to be able to println! error enum
+impl std::fmt::Display for AtticFileError {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        write!(f, "{}", self)
+    }
+}
+
 /// The File struct maps a libattic file to a file within the file system.
 ///     * Keeps track of file metadata
 ///     * File hash

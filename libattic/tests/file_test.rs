@@ -51,7 +51,7 @@ fn file_sentinel_rolling_hash() {
     match libattic::file::File::new(filepath.to_string()) {
         Ok(f) => local_file = f,
         Err(e) => {
-            println!(" Failed to create file {}", e.to_string());
+            println!(" Failed to create file {}", e);
             assert!(false);
             return;
         }
